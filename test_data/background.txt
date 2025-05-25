@@ -1,36 +1,80 @@
 Personal Information
 - Rakshit Makan
 - 5142333618
+- rakshitmakan@gmail.com
+- Github : https://github.com/rakmakan
+- Linkedin : https://www.linkedin.com/in/rakshit-makan/
 
 Background Information
 
-Education:
-- Master of Science in Computer Science
-  Stanford University, 2019-2021
-- Bachelor of Science in Computer Engineering
-  University of California, Berkeley, 2015-2019
+Education
+- Dalhousie University, Halifax | Master of Computer Science
+    Jan 2021 - Dec 2022
+    Earned a scholarship of $30,000 for outstanding performance
+    Served as a Teaching Assistant for machine learning, NLP, and statistical methods courses, conducting labs for over 100 students and contributing to their academic success
+
+- Guru Gobind Singh Indraprastha University, Delhi | Bachelor of Technology, ECE
+    Aug 2012 - Jun 2016
+    ● President: Organized 3-day College Annual Fest for 2016 ensuring 1000+ footfall everyday and raised Half a million rupees from sponsorship and brand promotion
+    ● Eco Club Chairman: Led a
 
 Experience:
-Software Engineer, AI Solutions Inc. (2021-Present)
-- Developed and maintained Python microservices using FastAPI and Django
-- Implemented machine learning models using TensorFlow and PyTorch
-- Optimized database queries resulting in 40% performance improvement
-- Led a team of 3 junior developers in building a recommendation system
+Employment history Linkedin
 
-Junior Developer, Tech Innovators (2019-2021)
-- Built RESTful APIs using Django and PostgreSQL
-- Implemented automated testing reducing bug reports by 30%
-- Collaborated with data scientists to integrate ML models
+- Behavox | LLM / Generative AI / ML Engineer | Montréal, QC, Canada
+    Jan 2023 - Present
+    Project Pathfinder
+    - Collaborated with the R&D team to develop an AI platform powered by large language models (LLMs) tailored for the finance compliance domain.
+    - LLM Pretraining: Pretrained LLMs on proprietary financial chat datasets using Masked Language Modeling on 2B tokens, optimized for multi-GPU (H100) environments with Python's Pytorch, transformers and Accelerate module.
+    - Text Summarization Tool: Built a text summarization tool within the AI platform by implementing prompt-based instruction fine-tuning on SME-curated datasets using ALPACA format
+    - Established a data framework for version-controlled perturbed datasets, enabling augmented training and validation during fine-tuning.
+    Continuous Training Pipeline:
+    - Designed and automated a training pipeline for logistic regression, BERT-family models, ONNX-format models, and LLM-based text classification.
+    - Reduced manual release efforts by 90% by automating training, validation, and deployment processes.
+    - Integrated checkpoint selection for a multilingual, multi-class DeBERTa classification model, leveraging a custom scoring method across languages for optimal performance.
+    Advanced Scenarios: Custom Fraud Detection Solution:
+    - Led requirement gathering, ideation, and deployment of a hybrid fraud detection solution combining keyword-based and machine-learning models.
+    - Developed a multilingual keyword extraction tool using the KeyBERT framework and a custom SBERT model.
+    - Successfully deployed the solution, resulting in a $500K revenue boost within a single quarter and serving as a gateway to the Behavox compliance solution suite.
+
+- Mitacs | AI Research Intern | Halifax, NS, Canada
+    Feb 2022 - Jul 2022
+    - Developed a real-time machine learning framework for multi-page scanned document classification, utilizing computer vision and natural language processing techniques
+    - Explored diverse Transformer models (BERT, TransformerXL, Longformer, Roberta XLM) and achieved a 98% F1 score with the deployed model on AWS SageMaker
+    - Conducted thorough experiments and analysis, publishing an original thesis on document classification and information extraction
+
+- Novartis Pharmaceuticals | Data Scientist | Hyderabad, Telangana, India
+    Feb 2019 - Jan 2021
+    - Saved $100k yearly by internalizing digital marketing processes, including data preparation, data mining, and interactive dashboard development
+    - Introduced machine learning and visual analytics solutions, achieving a 15% sales increase with top-tier healthcare professionals (HCPs) through targeted marketing campaigns
+    - Developed and deployed predictive models for sales forecasting, resulting in a 10% reduction in sales variance
+    - Collaborated with marketing teams to design and implement A/B testing experiments, measuring campaign effectiveness and informing data-driven decisions
+
+- Decision Tree Analytics and Services | Data Analyst | Gurugram, Haryana, India
+    Mar 2018 - Jan 2019
+    - Developed interactive digital marketing dashboards in DOMO and Tableau, improving UI/UX through storyboarding techniques and showcasing performance KPIs for clients
+    - Worked on QA automation using Selenium, saving 3 hours of daily manual tasks and enhancing reliability
+    - Extracted and processed large datasets from social media platforms (Google Ads, Facebook Insights, Yahoo Gemini, App Leads, Taboola Ads) using Python and RESTFUL APIs
+
+- Accenture | Associate Software Development | Gurugram, Haryana, India
+    Jan 2017 - Mar 2018
+    - Implemented and maintained Informatica PowerCenter ETL workflows, optimizing storage and processing of historical data in a data warehouse with a snowflake schema
+    - Enhanced ETL flow efficiency by replacing complex data processing with SQL queries at the source, resulting in a significant 90% reduction in runtime
+    - Developed a chatbot prototype using the naïve Bayes classification algorithm, winning a cash prize during the innovation month and addressing team project queries
 
 Skills:
-- Programming: Python, JavaScript, Java
-- Frameworks: Django, FastAPI, Flask
-- AI/ML: TensorFlow, PyTorch, scikit-learn
-- Databases: PostgreSQL, MongoDB
-- Tools: Docker, Kubernetes, Git
-- Cloud: AWS, GCP
+
+- Generative AI | Methodologies & Libraries
+- Openai API | LangChain | HuggingFace Trainer API | Instruct FInetuning | Gradio Application | GPT 4 Evaluation | Instruction Finetuning | Lora/QLora Training | Prompt Engineering | Mistral AI | Chain-of-Thought Framework
+- Data Science & Machine Learning | Libraries and Techniques
+- PyTorch | Sci-kit learn | Pandas | NumPy | Transformers | Spacy | Descriptive Statistics | Hypothesis Testing | Data Visualization | Excel
+- Software Development | Programming Languages & Frameworks
+- Python | SQL | Flask Framework | HTML | JavaScript | Git | CI/CD pipeline | Agile Framework | JIRA | Docker
 
 Projects:
-- AI-Powered Code Reviewer: Built a tool that uses GPT-4 to analyze and suggest improvements in code
-- Scalable ML Pipeline: Developed a distributed system for training ML models using Kubernetes
-- Open Source Contributions: Regular contributor to Django and FastAPI projects
+- Project: RAG implementation with Phi-3.5B:
+    ● Designed and developed a pipeline for context retrieval and interactive querying using a custom LLM (Phi-ONNX) and HuggingFace embeddings. Built and stored a vector-based index from PDF documents for efficient retrieval.
+    ● Utilized HuggingFace's embedding models and Microsoft Phi-ONNX to generate contextual responses. Designed an interactive querying interface with similarity postprocessing and dynamic prompt generation for accurate response synthesis.
+
+- LLM Model Interfaces
+    ● This project is a Python application designed for machine learning model training and inference. It leverages models in both Hugging Face and ONNX formats, enabling efficient training and inference processes. The application is modular, with each Python file serving a specific purpose.

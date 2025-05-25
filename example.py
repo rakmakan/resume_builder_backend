@@ -1,10 +1,11 @@
 from pathlib import Path
+from app.config import DATABASE_PATH
 from app.db.database import DatabaseInspector
 from app.db.repository import ResumeRepository
 
 def main():
-    # Get the database path
-    db_path = str(Path(__file__).parent.parent / 'database' / 'resume.sqlite')
+    # Get the database path from config
+    db_path = DATABASE_PATH
     
     # First, let's inspect the database and create Pydantic models
     inspector = DatabaseInspector(db_path)

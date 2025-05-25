@@ -3,3 +3,7 @@ pydantic>=2.0.0
 pydantic-ai>=0.1.0
 openai>=1.0.0  # for OpenAI GPT-4 support
 python-dotenv>=1.0.0
+selenium>=4.33.0
+webdriver_manager>=4.0.2
+pandas>=2.2.3
+beautifulsoup4>=4.13.4

@@ -30,10 +30,15 @@ def init_database(db_path: str):
     CREATE TABLE IF NOT EXISTS company (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         name TEXT NOT NULL,
-        about_business TEXT,
-        qualifications TEXT,
-        skills TEXT,
+        job_title TEXT NOT NULL,
         job_description TEXT NOT NULL,
+        location TEXT,
+        application_url TEXT,
+        seniority_level TEXT,
+        about TEXT,
+        required_education TEXT,
+        required_experience TEXT,
+        required_skills TEXT,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     )
     """)
@@ -151,6 +156,17 @@ def init_database(db_path: str):
         display_order INTEGER,
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         FOREIGN KEY (resume_id) REFERENCES resumes(id) ON DELETE CASCADE
+    )
+    """)
+
+    # Create resume table
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS resume (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        company_id INTEGER NOT NULL,
+        content TEXT NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (company_id) REFERENCES company (id)
     )
     """)
 

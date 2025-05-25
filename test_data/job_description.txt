@@ -1,33 +1,81 @@
-Senior Python Developer
+About the job
+Reference No. R2796491
 
-Company: TechCorp Solutions
-Location: San Francisco, CA (Remote Available)
+Position Title: AI Systems and ML Scientist
 
-About Us:
-TechCorp Solutions is a leading software development company specializing in AI-powered enterprise solutions. We're building the next generation of intelligent applications that help businesses make better decisions.
+Department: Data Management, Machine Learning & AI
 
-Job Description:
-We are seeking an experienced Python Developer to join our growing team. The ideal candidate will have strong experience in building scalable applications and working with AI/ML technologies.
+Location: Toronto, ON
 
-Requirements:
-- 5+ years of experience in Python development
-- Strong knowledge of web frameworks (Django, FastAPI)
-- Experience with AI/ML libraries (TensorFlow, PyTorch)
-- Proficient in SQL and database design
-- Experience with cloud platforms (AWS, GCP)
-- Strong understanding of software design patterns
-- Experience with microservices architecture
+About The Job
 
-Responsibilities:
-- Design and implement scalable Python applications
-- Work with AI/ML teams to integrate machine learning models
-- Optimize application performance and scalability
-- Write clean, maintainable, and well-tested code
-- Mentor junior developers and conduct code reviews
-- Collaborate with cross-functional teams
+At Sanofi, we deliver 4.3 billion healthcare solutions to people every year, thanks to the flawless planning and meticulous eye for detail of our Manufacturing & Supply teams including Global MSAT (Manufacturing Sciences, Analytics, and Technology). With your talent and ambition, we can do even more to protect people from infectious diseases and bring hope to patients and their families.
 
-Qualifications:
-- Bachelor's degree in Computer Science or related field
-- Strong problem-solving and analytical skills
-- Excellent communication and teamwork abilities
-- Experience with agile development methodologies
+As a AI Systems and ML Scientist within MSAT Process Data Management, ML and AI platform, you will contribute to the launch of 3 to 5 new products annually across various modalities, enabling us to reach and serve more patients and communities. You will also help us fulfil our ambitions to provide best-in-class data-driven Manufacturing Support, focusing on technical and process aspects, process monitoring, process robustness enhancement, and yield improvement to optimize performance.
+
+We are an innovative global healthcare company with one purpose: to chase the miracles of science to improve people’s lives. We’re also a company where you can flourish and grow your career, with countless opportunities to explore, make connections with people, and stretch the limits of what you thought was possible. Ready to get started?
+
+Main Responsibilities
+
+Develop AI systems and Agentic Systems using Generative AI and programmatic techniques (40%).
+Develop standard and modular data engineering, visualization, AI solutions for rapid modernization of process monitoring and troubleshooting capabilities (30%)
+Partner with manufacturing operations, Digital, Smart Factory and other global functions to enable Sanofi’s new and legacy facilities with contextualized process data to facilitate timely data-driven decision making (20%)
+Upskill and train MSAT Global Data Science network in terms of ML and AI techniques (10%).
+
+Experience
+
+About You:
+
+3+ years of experience developing AI and Generative AI solutions to drive automation and business process efficiencies.
+Must-have experiences include working on projects involving large language models (LLMs) and techniques such as Retrieval-Augmented Generation (RAG), Dense Passage Retrieval (DPR), Knowledge Graphs, Fine-tuning and Prompt engineering.
+Proficient in using classification, clustering, and dimensionality reduction.
+Experience in implementing and managing CI/CD pipelines to automate the deployment and testing of data and AI solutions.
+Experience in working with manufacturing datasets, cloud computing and cloud data services (e.g. Snowflake, EC2, EMR, RDS, Redshift) and vector databases (e.g. Pinecone, Chroma, Weaviate, etc.) for handling high-dimensional and unstructured data.
+Proficient in designing and developing web-based user interface (UIs) and real-time dashboards using Streamlit and Power BI and other web development frameworks such as React for better insights and improved decision making.
+
+Technical Skills
+
+Strong skills in Python are essential. Knowledge of other languages like R, Java, or C++ can be beneficial
+Data analysis and modelling using open-source software libraries, SIMCA, Dataiku and JMP
+Database design/management tools: MS SQL Server, MySQL, and PostgreSQL 
+Data visualization and web development frameworks: Power BI, Streamlit, React and similar frameworks
+Big Data/cloud platforms: AWS, Snowflake, Azure
+Other relevant software such as MS office, software for project management and agile activity tracking
+
+Project Management
+
+Lean & Agile practices
+User experience management
+
+Transversal Skills & Competencies (Soft Skills)
+
+Problem solving and decision making
+Storytelling and technical writing
+Building partnerships/stakeholder management 
+Transversal collaboration
+Strategic thinking
+Change management
+
+Education
+
+MASc, - Process Engineering, Computer Science, Statistics or related field with specialization in Machine Learning and Artificial Intelligence – required. PhD – preferred.
+Formal training and certification or self-learned demonstratable skills as a ML/AI data scientist.
+
+Languages
+
+Fluent in English
+
+Why Choose Us? 
+
+Bring the miracles of science to life alongside a supportive, future-focused team.
+Discover endless opportunities to grow your talent and drive your career, whether it’s through a promotion or lateral move, at home or internationally.
+Enjoy a thoughtful, well-crafted rewards package that recognizes your contribution and amplifies your impact.
+Take good care of yourself and your family, with a wide range of health and wellbeing benefits including high-quality healthcare, prevention and wellness programs
+
+Sanofi is an equal opportunity employer committed to diversity and inclusion. Our goal is to attract, develop and retain highly talented employees from diverse backgrounds, allowing us to benefit from a wide variety of experiences and perspectives. We welcome and encourage applications from all qualified applicants. Accommodations for persons with disabilities required during the recruitment process are available upon request.
+
+#GD-SP
+
+All compensation will be determined commensurate with demonstrated experience. Employees may be eligible to participate in Company employee benefit programs, and additional benefits information can be found here.
+
+Les employés peuvent être admissibles à participer aux programmes d'avantages sociaux de l'entreprise. Des informations supplémentaires sur les avantages sociaux peuvent être trouvées ici.

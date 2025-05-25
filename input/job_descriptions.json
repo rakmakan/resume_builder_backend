@@ -1,0 +1,12 @@
+{
+    "jobs": [
+        {
+            "id": "job1",
+            "description": "Senior Python Developer\n\nCompany: TechCorp Solutions\nLocation: San Francisco, CA (Remote Available)\n\nAbout Us:\nTechCorp Solutions is a leading software development company specializing in AI-powered enterprise solutions. We're building the next generation of intelligent applications that help businesses make better decisions.\n\nJob Description:\nWe are seeking an experienced Python Developer to join our growing team. The ideal candidate will have strong experience in building scalable applications and working with AI/ML technologies.\n\nRequirements:\n- 5+ years of experience in Python development\n- Strong knowledge of web frameworks (Django, FastAPI)\n- Experience with AI/ML libraries (TensorFlow, PyTorch)\n- Proficient in SQL and database design\n- Experience with cloud platforms (AWS, GCP)\n- Strong understanding of software design patterns\n- Experience with microservices architecture\n\nResponsibilities:\n- Design and implement scalable Python applications\n- Work with AI/ML teams to integrate machine learning models\n- Optimize application performance and scalability\n- Write clean, maintainable, and well-tested code\n- Mentor junior developers and conduct code reviews\n- Collaborate with cross-functional teams\n\nQualifications:\n- Bachelor's degree in Computer Science or related field\n- Strong problem-solving and analytical skills\n- Excellent communication and teamwork abilities\n- Experience with agile development methodologies"
+        },
+        {
+            "id": "job2",
+            "description": "AI/ML Engineer\n\nCompany: AI Innovations\nLocation: Remote\n\nAbout Us:\nAI Innovations is at the forefront of artificial intelligence and machine learning solutions. We develop cutting-edge AI applications for enterprise clients.\n\nJob Description:\nWe're looking for an AI/ML Engineer to join our team in building next-generation AI solutions.\n\nRequirements:\n- Strong experience with Python and ML frameworks\n- Expertise in PyTorch or TensorFlow\n- Experience with LLMs and transformer architectures\n- Strong understanding of statistical modeling\n- Experience with cloud ML platforms\n\nResponsibilities:\n- Develop and deploy ML models\n- Optimize model performance\n- Work on NLP and computer vision projects\n- Collaborate with research teams\n\nQualifications:\n- MS/PhD in Computer Science, AI, or related field\n- 3+ years of industry experience\n- Strong publication record is a plus"
+        }
+    ]
+}

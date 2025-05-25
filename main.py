@@ -1,10 +1,21 @@
 #!/usr/bin/env python3
 import asyncio
+import json
 import os
 from pathlib import Path
+from datetime import datetime
 from dotenv import load_dotenv
 import openai
 from app.ai_resume_builder import AIResumeBuilder
+from app.config import DATABASE_PATH
+from app.models import Company
+
+def get_latest_jobs_file(input_dir: str = "input") -> Path:
+    """Get the most recent job descriptions file from the input directory."""
+    job_files = list(Path(input_dir).glob("job_descriptions_*.json"))
+    if not job_files:
+        return Path(input_dir) / "job_descriptions.json"
+    return max(job_files, key=lambda x: x.stat().st_mtime)
 
 async def main():
     # Load environment variables
@@ -16,10 +27,11 @@ async def main():
         print("Please make sure your .env file contains a valid API key.")
         return
         
-    # Initialize the database directory and AI resume builder
-    db_dir = Path(__file__).parent / 'database'
-    db_dir.mkdir(exist_ok=True, mode=0o755)  # Set proper directory permissions
-    db_path = str(db_dir / 'resume.sqlite')
+    # Get database path from config
+    db_path = DATABASE_PATH
+    
+    # Create database directory if it doesn't exist
+    Path(db_path).parent.mkdir(exist_ok=True, mode=0o755)
     
     # Initialize database if it doesn't exist
     if not Path(db_path).exists():
@@ -31,20 +43,19 @@ async def main():
     
     print("\nWelcome to AI Resume Builder!")
     
-    # Read job description from file
-    job_desc_path = Path(__file__).parent / 'test_data' / 'job_description.txt'
+    # Read job descriptions from the latest JSON file
+    jobs_file = get_latest_jobs_file()
     try:
-        with open(job_desc_path, 'r') as f:
-            job_description = f.read()
-        print(f"Successfully read job description from {job_desc_path}")
+        with open(jobs_file, 'r') as f:
+            jobs_data = json.load(f)
+        print(f"Successfully read job descriptions from {jobs_file}")
     except FileNotFoundError:
-        print(f"Error: Could not find job description file at {job_desc_path}")
+        print(f"Error: Could not find job descriptions file at {jobs_file}")
         return
-    
-    # Analyze job description
-    print("\nAnalyzing job description...")
-    company_id = await builder.analyze_job_description(job_description)
-    
+    except json.JSONDecodeError:
+        print(f"Error: Invalid JSON format in {jobs_file}")
+        return
+
     # Read background from file
     background_path = Path(__file__).parent / 'test_data' / 'background.txt'
     try:
@@ -54,11 +65,47 @@ async def main():
     except FileNotFoundError:
         print(f"Error: Could not find background file at {background_path}")
         return
-    
-    # Create targeted resume
-    print("\nCreating your targeted resume...")
-    resume_id = await builder.create_resume(company_id, my_background)
-    print(f"\nResume created successfully! Resume ID: {resume_id}")
+
+    # Process each job description
+    resume_ids = []
+    for job in jobs_data['jobs']:
+        job_id = job['id']
+        job_description = job['description']
+        application_url = job.get('application_url', '')
+        
+        print(f"\nProcessing job {job_id}...")
+        print("Analyzing job description...")
+        
+        # Create company with job details including application URL
+        company = Company(
+            name=job.get('company', 'Unknown'),
+            job_title=job.get('title', 'Unknown'),
+            job_description=job_description,
+            location=job.get('location', ''),
+            application_url=application_url,
+            seniority_level=job.get('seniority_level', '')
+        )
+        company_id = await builder.analyze_job_description_with_company(company)
+        
+        print(f"Creating targeted resume for job {job_id}...")
+        resume_id = await builder.create_resume(company_id, my_background)
+        resume_ids.append({
+            "job_id": job_id,
+            "resume_id": resume_id,
+            "company": job.get('company', 'Unknown'),
+            "title": job.get('title', 'Unknown'),
+            "application_url": application_url
+        })
+        print(f"Resume created successfully for job {job_id}! Resume ID: {resume_id}")
+
+    print("\nAll resumes created successfully!")
+    print("\nResume Details:")
+    for resume in resume_ids:
+        print(f"Job {resume['job_id']} at {resume['company']}")
+        print(f"Position: {resume['title']}")
+        print(f"Resume ID: {resume['resume_id']}")
+        print(f"Application URL: {resume['application_url']}")
+        print("-" * 50)
 
 if __name__ == "__main__":
     asyncio.run(main())

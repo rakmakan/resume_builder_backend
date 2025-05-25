@@ -12,6 +12,10 @@ python-dotenv = "^1.1.0"
 pydantic = "^2.11.5"
 pydantic-ai = "^0.2.7"
 openai = "^1.82.0"
+selenium = "^4.33.0"
+webdriver-manager = "^4.0.2"
+pandas = "^2.2.3"
+beautifulsoup4 = "^4.13.4"
 
 
 [build-system]

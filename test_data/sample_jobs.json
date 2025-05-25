@@ -1,0 +1,22 @@
+{
+  "jobs": [
+    {
+      "id": "job1",
+      "company": "TechCorp Inc.",
+      "title": "Senior Software Engineer",
+      "location": "San Francisco, CA",
+      "seniority_level": "Senior",
+      "application_url": "https://techcorp.com/careers/senior-swe",
+      "description": "We are seeking a Senior Software Engineer to join our team. The ideal candidate will have:\n- 5+ years experience in Python\n- Strong background in distributed systems\n- Experience with cloud platforms (AWS/GCP)\n- Bachelor's degree in Computer Science or related field\n- Experience with modern web frameworks\n\nResponsibilities:\n- Design and implement scalable backend services\n- Lead technical projects and mentor junior developers\n- Collaborate with cross-functional teams\n- Drive technical architecture decisions"
+    },
+    {
+      "id": "job2",
+      "company": "AI Solutions Ltd",
+      "title": "Machine Learning Engineer",
+      "location": "Remote",
+      "seniority_level": "Mid-Level",
+      "application_url": "https://ai-solutions.com/careers/ml-engineer",
+      "description": "Looking for a Machine Learning Engineer to build AI-powered solutions. Requirements:\n- 3+ years experience in ML/AI\n- Strong Python programming skills\n- Experience with PyTorch or TensorFlow\n- MS/PhD in Computer Science, Mathematics, or related field\n- Background in NLP is a plus\n\nResponsibilities:\n- Develop and deploy ML models\n- Optimize model performance\n- Work on cutting-edge AI applications"
+    }
+  ]
+}
