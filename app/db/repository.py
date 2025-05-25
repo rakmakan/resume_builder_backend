@@ -54,6 +54,22 @@ class ResumeRepository:
             self.conn.rollback()
             raise e
 
+    def add_personal_info_detail(self, resume_id: int, detail_name: str, detail_icon: str, detail_info: str) -> int:
+        """Add personal information detail for a resume."""
+        self.connect()
+        try:
+            query = """
+            INSERT INTO personal_info_details (
+                resume_id, detail_name, detail_icon, detail_info, updated_at
+            ) VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP)
+            """
+            self.cursor.execute(query, (resume_id, detail_name, detail_icon, detail_info))
+            self.conn.commit()
+            return self.cursor.lastrowid
+        except Exception as e:
+            self.conn.rollback()
+            raise e
+
     def add_summary(self, resume_id: int, content: str) -> int:
         """Add professional summary to a resume."""
         self.connect()

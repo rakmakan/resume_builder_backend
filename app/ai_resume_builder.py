@@ -53,8 +53,17 @@ class AIResumeBuilder:
             Focus on organizing the information into clear categories:
 
             1. Personal Information:
-               - Extract name and contact details
-               - Do not add or modify any personal information
+               - Extract name and a professional headline
+               - Organize contact details into structured format:
+                 * Email (icon: fas fa-envelope)
+                 * Phone (icon: fas fa-phone)
+                 * LinkedIn (icon: fab fa-linkedin)
+                 * GitHub (icon: fab fa-github)
+                 * Portfolio/Website (icon: fas fa-globe)
+               - Each contact detail should have:
+                 * detail_name (e.g., "Email", "Phone")
+                 * detail_icon (use Font Awesome icons as shown above)
+                 * detail_info (the actual contact information)
 
             2. Education History:
                - Extract degree, institution, location, and dates
@@ -81,6 +90,7 @@ class AIResumeBuilder:
             - Preserve all numerical metrics and achievements
             - Keep language concise and specific
             - Split long descriptions into bullet points
+            - For contact details, always include appropriate Font Awesome icons
             """
         )
         
@@ -225,12 +235,29 @@ class AIResumeBuilder:
         resume_id = self.resume_repo.create_resume(
             name=f"Resume for {company_data['name']}",
             description=f"Targeted resume for position at {company_data['name']}"
-        )            # Add personal information
+        )            # Add basic personal information
+        # Create a basic contact string from primary contact methods (email and phone)
+        primary_contacts = [
+            detail.detail_info 
+            for detail in background_info.personal_info.contact_details
+            if detail.detail_name in ['Email', 'Phone']
+        ]
+        contact_info = " | ".join(primary_contacts)
+        
         self.resume_repo.add_personal_info(
             resume_id=resume_id,
             name=background_info.personal_info.name,
-            contact_info=background_info.personal_info.contact_info
+            contact_info=contact_info
         )
+        
+        # Add detailed contact information for UI display
+        for detail in background_info.personal_info.contact_details:
+            self.resume_repo.add_personal_info_detail(
+                resume_id=resume_id,
+                detail_name=detail.detail_name,
+                detail_icon=detail.detail_icon,
+                detail_info=detail.detail_info
+            )
 
         # Generate and add summary
         summary_prompt = f"""

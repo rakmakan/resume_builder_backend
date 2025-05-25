@@ -43,10 +43,17 @@ class WorkHistoryItem(BaseModel):
     location: Optional[str] = None
     key_responsibilities: List[str] = []
 
+class PersonalInfoDetail(BaseModel):
+    """Model for personal information details used in UI display"""
+    detail_name: str  # e.g., 'Email', 'Phone', 'GitHub', 'LinkedIn'
+    detail_icon: str  # e.g., 'fas fa-envelope', 'fas fa-phone'
+    detail_info: str  # The actual contact information
+
 class PersonalInfo(BaseModel):
     """Model for personal information"""
     name: str
-    contact_info: str
+    contact_info: Optional[str] = None  # Basic contact info (typically email and phone)
+    contact_details: List[PersonalInfoDetail] = []  # Detailed contact info with icons for UI
 
 class EducationHistoryItem(BaseModel):
     """Model for an education history item"""
