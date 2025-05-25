@@ -1,0 +1,32 @@
+Background Information
+
+Education:
+- Master of Science in Computer Science
+  Stanford University, 2019-2021
+- Bachelor of Science in Computer Engineering
+  University of California, Berkeley, 2015-2019
+
+Experience:
+Software Engineer, AI Solutions Inc. (2021-Present)
+- Developed and maintained Python microservices using FastAPI and Django
+- Implemented machine learning models using TensorFlow and PyTorch
+- Optimized database queries resulting in 40% performance improvement
+- Led a team of 3 junior developers in building a recommendation system
+
+Junior Developer, Tech Innovators (2019-2021)
+- Built RESTful APIs using Django and PostgreSQL
+- Implemented automated testing reducing bug reports by 30%
+- Collaborated with data scientists to integrate ML models
+
+Skills:
+- Programming: Python, JavaScript, Java
+- Frameworks: Django, FastAPI, Flask
+- AI/ML: TensorFlow, PyTorch, scikit-learn
+- Databases: PostgreSQL, MongoDB
+- Tools: Docker, Kubernetes, Git
+- Cloud: AWS, GCP
+
+Projects:
+- AI-Powered Code Reviewer: Built a tool that uses GPT-4 to analyze and suggest improvements in code
+- Scalable ML Pipeline: Developed a distributed system for training ML models using Kubernetes
+- Open Source Contributions: Regular contributor to Django and FastAPI projects

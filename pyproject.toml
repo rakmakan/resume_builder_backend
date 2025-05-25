@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "python-backend"
+name = "resume-builder-backend"
 version = "0.1.0"
 description = ""
 authors = ["Rakshit Makan <rakshitmakan.dev@gmail.com>"]
@@ -10,6 +10,8 @@ python = "^3.11"
 sqlalchemy = "^2.0.41"
 python-dotenv = "^1.1.0"
 pydantic = "^2.11.5"
+pydantic-ai = "^0.2.7"
+openai = "^1.82.0"
 
 
 [build-system]
