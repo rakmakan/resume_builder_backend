@@ -1,0 +1,32 @@
+# Job Search Preferences
+
+Job Titles: 
+- Data Scientist
+- Machine Learning Engineer
+- AI Engineer
+- ML Research Scientist
+
+Level: Senior/Manager
+Location: Canada (primarily Ontario, but open to other provinces)
+Job Type: Full-time, Contract
+Remote Preference: Yes
+Recent Posts: Past month preferred, minimum past week
+
+# Key Skills (in order of priority):
+- Machine Learning / AI
+- LLMs / Generative AI
+- Python
+- Deep Learning
+
+# Industry Preferences:
+- AI/ML Companies
+- Tech Companies
+- Finance
+- Healthcare
+- Research Labs/Institutions
+
+# Role Focus:
+- Machine Learning Engineering
+- LLM/Generative AI Development
+- ML Infrastructure
+- AI Research

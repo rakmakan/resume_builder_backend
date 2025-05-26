@@ -44,10 +44,14 @@ class LinkedInJobScraper:
             List[Dict]: List of job listings with details
         """
         try:
+            # Clean and normalize input
+            keywords = ' '.join(keywords.split())  # Normalize whitespace
+            location = ' '.join(location.split()) if location else ""
+            
             # Build query parameters
             params = {
-                "keywords": quote_plus(keywords),
-                "location": quote_plus(location) if location else "",
+                "keywords": keywords,
+                "location": location,
                 "start": 0
             }
 
@@ -203,14 +207,15 @@ class LinkedInJobScraper:
                 level = "Level not found"
 
             return {
-                "job_id": job_id,
+                "id": job_id,  # Changed from job_id to id to match Job model
                 "title": title,
                 "company": company,
                 "location": location,
                 "description": description,
                 "seniority_level": level,
                 "application_url": f"https://www.linkedin.com/jobs/view/{job_id}",
-                "scraped_date": datetime.now().isoformat()
+                "applied": False,  # Added applied field
+                "scraped_date": datetime.now()  # Changed from isoformat() to datetime object
             }
             
         except requests.exceptions.RequestException as e:
@@ -245,13 +250,14 @@ class LinkedInJobScraper:
             with open(output_path, "w") as f:
                 json.dump({
                     "jobs": [{
-                        "id": job.get("job_id", str(i)),
+                        "id": job.get("id", str(i)),  # Changed from job_id to id
                         "title": job.get("title", ""),
                         "company": job.get("company", ""),
                         "location": job.get("location", ""),
                         "description": job.get("description", ""),
                         "application_url": job.get("application_url", ""),
-                        "seniority_level": job.get("seniority_level", "")
+                        "seniority_level": job.get("seniority_level", ""),
+                        "applied": job.get("applied", False),  # Added applied field
                     } for i, job in enumerate(jobs) if job.get("description")]
                 }, f, indent=2)
                 
@@ -262,22 +268,56 @@ class LinkedInJobScraper:
             print(f"Error saving results: {e}")
             return None
 
-def main():
+async def main():
     # Example usage
     scraper = LinkedInJobScraper()
+    from app.config import DATABASE_PATH
+    from app.db.job_repository import JobRepository
+    from app.models import Job
+    
+    # Initialize job repository
+    job_repo = JobRepository(DATABASE_PATH)
     
     jobs = scraper.search_jobs(
-        keywords="Data Scientist",
-        location="Canada",
+        keywords="Senior Data Scientist",  # Simplified search term
+        location="Toronto",  # More specific location
         job_type=["Full-time"],
-        experience_level=["Mid-Senior level", "Associate"],
-        date_posted="Past week",
-        remote=True,
-        max_results=10
+        experience_level=["Mid-Senior level"],  # Focus on senior roles
+        date_posted="Past week",  # Expanded time range since 24 hours might be too restrictive
+        remote=None,  # Include all jobs
+        max_results=50
     )
     
     if jobs:
+        # Save to JSON file for backup
         scraper.save_results(jobs, "input")
+        
+        # Save to database
+        print("\nSaving jobs to database...")
+        saved_count = 0
+        for job_data in jobs:
+            # Create Job model instance
+            job = Job(
+                id=job_data["id"],
+                title=job_data["title"],
+                company=job_data["company"],
+                location=job_data["location"],
+                description=job_data["description"],
+                seniority_level=job_data["seniority_level"],
+                application_url=job_data["application_url"],
+                applied=job_data["applied"],
+                scraped_date=job_data["scraped_date"]
+            )
+            
+            # Try to add to database
+            if await job_repo.create(job):
+                saved_count += 1
+                print(f"Added new job: {job.title} at {job.company}")
+            else:
+                print(f"Job already exists: {job.title} at {job.company}")
+        
+        print(f"\nSuccessfully saved {saved_count} new jobs to database")
 
 if __name__ == "__main__":
-    main()
+    import asyncio
+    asyncio.run(main())

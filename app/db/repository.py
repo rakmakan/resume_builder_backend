@@ -24,15 +24,15 @@ class ResumeRepository:
             self.conn = None
             self.cursor = None
 
-    def create_resume(self, name: str, description: Optional[str] = None) -> int:
+    def create_resume(self, name: str, job_id: str, description: Optional[str] = None) -> int:
         """Create a new resume and return its ID."""
         self.connect()
         try:
             query = """
-            INSERT INTO resumes (name, description, created_at, updated_at)
-            VALUES (?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+            INSERT INTO resumes (name, job_id, description, created_at, updated_at)
+            VALUES (?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
             """
-            self.cursor.execute(query, (name, description))
+            self.cursor.execute(query, (name, job_id, description))
             self.conn.commit()
             return self.cursor.lastrowid
         except Exception as e:
@@ -235,3 +235,28 @@ class ResumeRepository:
         except Exception as e:
             self.conn.rollback()
             raise e
+
+    def get_resume_by_job_id(self, job_id: str) -> Optional[Dict[str, Any]]:
+        """Get resume by job ID."""
+        self.connect()
+        try:
+            query = """
+            SELECT id, name, description, job_id, created_at, updated_at
+            FROM resumes
+            WHERE job_id = ?
+            """
+            self.cursor.execute(query, (job_id,))
+            row = self.cursor.fetchone()
+            if row:
+                return {
+                    "id": row[0],
+                    "name": row[1],
+                    "description": row[2],
+                    "job_id": row[3],
+                    "created_at": row[4],
+                    "updated_at": row[5]
+                }
+            return None
+        except Exception as e:
+            print(f"Error getting resume by job ID: {e}")
+            return None

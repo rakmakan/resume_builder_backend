@@ -10,13 +10,23 @@ Background Information
 Education
 - Dalhousie University, Halifax | Master of Computer Science
     Jan 2021 - Dec 2022
-    Earned a scholarship of $30,000 for outstanding performance
-    Served as a Teaching Assistant for machine learning, NLP, and statistical methods courses, conducting labs for over 100 students and contributing to their academic success
+    During my graduate studies in Computer Science with a specialization in Artificial Intelligence, I pursued a comprehensive curriculum that included Machine Learning, Deep Learning, Advanced Topics in Natural Language Processing (NLP), and Visual Analytics. I achieved Grade A in all these courses, reflecting both my technical proficiency and deep engagement with the material.
+    I was actively involved as a Research Assistant at the MALNIS (Machine Learning and Natural Language Processing in Information Systems) Lab, where I contributed to academic research and group knowledge-sharing initiatives. My responsibilities included organizing and leading collaborative reading sessions, where we critically reviewed cutting-edge research papers. I was responsible for preparing concise yet comprehensive summaries, facilitating group discussions, and ensuring all lab members remained informed about the latest advancements in AI and NLP. This experience honed my skills in technical writing, literature review, and peer collaboration.
+    As part of my thesis work, I undertook a research collaboration with the company CondoClear, resulting in the publication of an original thesis titled:
+    “Human-in-the-loop Classification for Multi-page Administrative Documents.”
+    This project focused on developing a robust classification framework that integrated human feedback into the document processing pipeline. It addressed challenges in automating document classification workflows, particularly in handling long, unstructured, multi-page administrative documents where full automation is error-prone. The solution utilized a combination of NLP techniques, weak supervision, and active learning, with human annotators guiding the model’s learning path. This work has practical applications in document management systems, compliance automation, and knowledge extraction pipelines.
+    In recognition of my academic excellence and research contributions, I was awarded a merit-based scholarship worth $30,000, which supported my tuition and living expenses throughout the program.
+    Additionally, I served as a Teaching Assistant for several graduate-level courses, including:
+        Machine Learning
+        Natural Language Processing
+        Statistical Methods for Data Science
+    In this role, I conducted hands-on lab sessions, guided students through complex assignments, and provided 1-on-1 mentoring. I supported over 100 students per semester, helping them develop strong foundations in core AI concepts, model evaluation techniques, and Python-based implementation.
+    This blend of academic rigor, research exposure, real-world application, and teaching experience has significantly shaped my ability to build, explain, and scale intelligent systems—especially in the context of NLP, ML pipelines, and human-centric AI.
 
 - Guru Gobind Singh Indraprastha University, Delhi | Bachelor of Technology, ECE
     Aug 2012 - Jun 2016
     ● President: Organized 3-day College Annual Fest for 2016 ensuring 1000+ footfall everyday and raised Half a million rupees from sponsorship and brand promotion
-    ● Eco Club Chairman: Led a
+    ● Eco Club Chairman
 
 Experience:
 Employment history Linkedin
@@ -24,43 +34,106 @@ Employment history Linkedin
 - Behavox | LLM / Generative AI / ML Engineer | Montréal, QC, Canada
     Jan 2023 - Present
     Project Pathfinder
-    - Collaborated with the R&D team to develop an AI platform powered by large language models (LLMs) tailored for the finance compliance domain.
-    - LLM Pretraining: Pretrained LLMs on proprietary financial chat datasets using Masked Language Modeling on 2B tokens, optimized for multi-GPU (H100) environments with Python's Pytorch, transformers and Accelerate module.
-    - Text Summarization Tool: Built a text summarization tool within the AI platform by implementing prompt-based instruction fine-tuning on SME-curated datasets using ALPACA format
-    - Established a data framework for version-controlled perturbed datasets, enabling augmented training and validation during fine-tuning.
-    Continuous Training Pipeline:
-    - Designed and automated a training pipeline for logistic regression, BERT-family models, ONNX-format models, and LLM-based text classification.
-    - Reduced manual release efforts by 90% by automating training, validation, and deployment processes.
-    - Integrated checkpoint selection for a multilingual, multi-class DeBERTa classification model, leveraging a custom scoring method across languages for optimal performance.
-    Advanced Scenarios: Custom Fraud Detection Solution:
-    - Led requirement gathering, ideation, and deployment of a hybrid fraud detection solution combining keyword-based and machine-learning models.
-    - Developed a multilingual keyword extraction tool using the KeyBERT framework and a custom SBERT model.
-    - Successfully deployed the solution, resulting in a $500K revenue boost within a single quarter and serving as a gateway to the Behavox compliance solution suite.
+            Led the development of advanced AI systems for the finance compliance domain, focusing on LLMs, generative AI, and multilingual text classification, deployed across GPU-accelerated environments (A100, H100, L4).
+            Spearheaded multiple high-impact projects in collaboration with R&D, product, and data QA teams, delivering production-grade solutions adopted across Behavox’s AI compliance suite.
+        Project: Pathfinder – AI Platform for Financial Compliance
+            Co-developed a robust AI platform tailored to compliance workflows using Large Language Models.
+            LLM Pretraining: Trained LLMs on 2B proprietary tokens using Masked Language Modeling, optimized for multi-GPU clusters (H100) via PyTorch, Hugging Face Transformers, and Accelerate.
+        Text Summarization Tool: 
+            Implemented prompt-based instruction tuning on SME-curated data (ALPACA format) to generate actionable insights from financial conversations.
+            Built a version-controlled data framework for creating and managing perturbed datasets to support robust LLM fine-tuning and validation cycles.
+        Continuous Training & Deployment Pipeline
+            Designed and automated a training pipeline for models ranging from logistic regression to DeBERTa-based multilingual classifiers and ONNX deployments.
+            Reduced manual release time by 90% by automating checkpoint selection, validation, and deployment with custom scoring methods.
+            Implemented threshold tuning and production-grade logic for pipeline reuse across downstream compliance applications.
+        Advanced Scenarios: Custom Fraud Detection System
+            Led end-to-end development of a hybrid fraud detection solution, combining keyword-based methods with ML classifiers for multilingual datasets.
+            Built a KeyBERT-based keyword extraction system integrated with a custom SBERT model, delivering accurate and scalable language-agnostic analysis.
+            Successfully deployed the solution, contributing to a $500K revenue increase in a single quarter and unlocking new business for Behavox’s compliance product suite.
+        AI Agents & Performance Optimization
+            Built production-grade AI agents using Pydantic AI, powering decision-making for compliance automation tools.
+            Designed and deployed a data augmentation system to enhance model recall, increasing it from 77% to 90% using effective prompt engineering and feedback loops.
+            Demonstrated ownership and leadership by investigating performance bottlenecks, iterating on model design, and coordinating across teams to drive results.
+        Technical & Cross-Team Contributions
+            Gained deep hands-on expertise with GPU infrastructure (A100, H100, L4), mastering multi-GPU parallelization and optimization for large-scale model training and inference.
+            Acted as a bridge between engineering, QA, and product teams, ensuring seamless end-to-end delivery and alignment across business goals and technical solutions.
+            Championed operational excellence and delivery accountability across multiple product lifecycles, consistently meeting POC goals with financial institutions and regulatory clients.
+
 
 - Mitacs | AI Research Intern | Halifax, NS, Canada
     Feb 2022 - Jul 2022
-    - Developed a real-time machine learning framework for multi-page scanned document classification, utilizing computer vision and natural language processing techniques
-    - Explored diverse Transformer models (BERT, TransformerXL, Longformer, Roberta XLM) and achieved a 98% F1 score with the deployed model on AWS SageMaker
-    - Conducted thorough experiments and analysis, publishing an original thesis on document classification and information extraction
+        Conducted applied AI research in collaboration with CondoClear, focusing on document automation for the real estate domain using a Human-in-the-Loop (HITL) machine learning framework.
+        Developed a web-based classification system for multi-page scanned administrative documents, enabling domain experts to annotate at both page-level and document-level, reducing manual review time by integrating intelligent automation.
+        Designed and implemented a two-step classification pipeline:
+            Page Importance Classifier (PIC) to filter irrelevant pages using SBERT embeddings and SVM.
+            Main Page Classifier (MPC) to assign document labels via polling operations across annotated pages.
+        Built an interactive feedback loop that enabled domain experts to retrain models in real-time via a visual annotation dashboard, boosting model accuracy and adaptability for evolving business needs.
+        Conducted model comparisons using classical ML models (Naive Bayes, Random Forest, SVM) and state-of-the-art NLP models (BERT, Longformer) to evaluate performance on noisy, imbalanced, and unstructured scanned text data.
+        Implemented custom text extraction and preprocessing pipelines using Python libraries such as Apache Tika, PyPDF2, and Tabula-py to parse and clean OCR-based PDF documents.
+        Integrated active learning and incremental retraining to improve performance in scenarios with limited labeled data, demonstrating improved F1-scores with fewer annotations.
+        Created a responsive, production-ready Flask web application with SQLite, Redis-based task queuing, and an interactive confusion matrix for real-time user feedback and error analysis.
+        Results from this research were formally documented in a graduate thesis titled “Human-in-the-loop Classification for Multi-page Administrative Documents” and validated through a user study with real estate professionals.
 
+Delivered an end-to-end pipeline that bridged the gap between ML developers and domain experts, showing significant improvement in system usability (SUS +20%) and classification reliability over fully automated solutions.
 - Novartis Pharmaceuticals | Data Scientist | Hyderabad, Telangana, India
     Feb 2019 - Jan 2021
-    - Saved $100k yearly by internalizing digital marketing processes, including data preparation, data mining, and interactive dashboard development
-    - Introduced machine learning and visual analytics solutions, achieving a 15% sales increase with top-tier healthcare professionals (HCPs) through targeted marketing campaigns
-    - Developed and deployed predictive models for sales forecasting, resulting in a 10% reduction in sales variance
-    - Collaborated with marketing teams to design and implement A/B testing experiments, measuring campaign effectiveness and informing data-driven decisions
+        Spearheaded the internalization of digital marketing analytics workflows—data extraction, transformation, mining, and visualization—leading to an annual cost savings of $100,000 by eliminating external vendor dependencies.
+        Applied machine learning and visual analytics to personalize HCP (Healthcare Professional) outreach, contributing to a 15% increase in sales through more targeted marketing efforts.
+        Built and deployed predictive models for sales forecasting, resulting in a 10% reduction in variance, enabling better inventory and promotional planning.
+        Partnered with cross-functional marketing teams to design and execute A/B testing experiments, producing actionable insights on campaign effectiveness and driving data-informed decision-making.
+
+        Project 1: Digital Marketing Campaign Analysis
+            Automated the collection of campaign performance data from platforms like Google Ads and Facebook Ads using REST APIs in Python, eliminating third-party dependencies and saving $75,000 annually.
+            Designed a Slowly Changing Dimension (SCD) Type II data warehouse in MS SQL Server, fed via automated ETL pipelines, to support advanced analytics and historical performance tracking.
+            Evaluated campaign performance using statistical analysis and KPIs like CPC, CPM, CPI, and conversion rate, applying Python-based trend analysis and exploratory data techniques.
+            Created interactive dashboards in QlikSense and Tableau, using storyboarding techniques to visualize multichannel marketing performance and optimize resource allocation.
+            Introduced Agile methodology into the analytics lifecycle, streamlining development workflows and accelerating campaign analysis turnaround by 30%.
+
+        Project 2: TopGun – Budget Optimization & Simulation Tool
+            Developed a Flask-based web application for marketing budget simulation using Market Mix Modeling (MMM) output such as ROI curves, helping brand teams optimize spend across channels.
+            Enabled Novartis marketers to replace manual Excel workflows, reducing effort and time by 70% in budget planning for executive reviews.
+            Designed and implemented the CI/CD pipeline and deployed the solution on AWS, using EC2, S3, and RDS, ensuring scalability and performance.
+            Built the front end using JavaScript, HTML, and CSS, integrating it seamlessly with the Flask backend for a smooth user experience.
+
+        Side Projects & Key Contributions
+            Created an automated social media analytics pipeline for the Australian market using topic modeling, sentiment analysis, and keyword tracking to extract patient-centric insights from public discourse.
+            Conducted statistical hypothesis testing (A/B) in the Chinese market to assess the impact of the Rep-Recommendation System (Actalya) on brand prescription volume.
+            Devised HCP segmentation models based on prescription patterns and geographic data, leading to a 20% increase in prescriptions among the most valuable practitioners.
+
 
 - Decision Tree Analytics and Services | Data Analyst | Gurugram, Haryana, India
     Mar 2018 - Jan 2019
-    - Developed interactive digital marketing dashboards in DOMO and Tableau, improving UI/UX through storyboarding techniques and showcasing performance KPIs for clients
-    - Worked on QA automation using Selenium, saving 3 hours of daily manual tasks and enhancing reliability
-    - Extracted and processed large datasets from social media platforms (Google Ads, Facebook Insights, Yahoo Gemini, App Leads, Taboola Ads) using Python and RESTFUL APIs
+        Engineered interactive digital marketing dashboards using DOMO and Tableau, leveraging storyboarding techniques to enhance UI/UX and communicate performance KPIs across multiple channels.
+        Automated data quality assurance (QA) workflows using Selenium, reducing manual QA time by 3 hours daily and improving the reliability and consistency of campaign reporting.
+        Extracted, processed, and stored large-scale digital marketing datasets via Python-based REST and SOAP API integrations with platforms like Google Ads, Facebook Insights, Yahoo Gemini, App Leads, and Taboola Ads for ongoing analytics and reporting.
+
+    Project 1: DataChannel – API Integration for Marketing Data Aggregation
+        Operated within an Agile environment to develop and test scalable API connectors in Python, enabling seamless data ingestion for the company’s in-house SaaS platform.
+        Built robust, reusable integrations with multiple digital marketing platforms to centralize ad performance data for real-time decision-making and trend analysis.
+        Designed the system architecture to support REST and SOAP endpoints, ensuring extensibility as new data sources were introduced.
+
+    Project 2: Multi-Channel Engagement Dashboards
+        Designed and implemented automated ETL workflows in MySQL and DOMO, scheduling hourly data refreshes to enable real-time cross-platform campaign monitoring.
+        Integrated Python scripting and SQL for data transformation and aggregation, ensuring clean, reliable inputs for visualization tools.
+        Developed a custom Selenium-based QA automation tool to validate data accuracy across campaigns and platforms—resulting in an 80% reduction in manual QA effort and a significant increase in trustworthiness of insights.
+
 
 - Accenture | Associate Software Development | Gurugram, Haryana, India
     Jan 2017 - Mar 2018
-    - Implemented and maintained Informatica PowerCenter ETL workflows, optimizing storage and processing of historical data in a data warehouse with a snowflake schema
-    - Enhanced ETL flow efficiency by replacing complex data processing with SQL queries at the source, resulting in a significant 90% reduction in runtime
-    - Developed a chatbot prototype using the naïve Bayes classification algorithm, winning a cash prize during the innovation month and addressing team project queries
+    Designed, developed, and maintained ETL workflows using Informatica PowerCenter to ingest and organize large volumes of transactional and historical data into a Snowflake schema-based data warehouse, supporting enterprise analytics and reporting.
+    Significantly improved data pipeline performance by replacing multi-step data transformations with optimized SQL queries at the source, leading to a 90% reduction in ETL runtime and faster data availability for business teams.
+    Gained foundational experience in data warehousing, data modeling, and enterprise reporting systems, supporting business intelligence use cases across global teams.
+
+    Project: Data Warehousing of Transactional Data
+        Built scalable ETL workflows to transform and load daily transactional data into a centralized data warehouse, ensuring data integrity and compatibility with downstream analytics tools.
+        Re-engineered inefficient ETL processes, identifying logic that could be offloaded to source systems via advanced SQL queries—boosting performance and reducing resource costs.
+        Collaborated with cross-functional teams to validate data outputs, resolve inconsistencies, and support audit requirements.
+
+    Innovation Project: NLP-Powered Chatbot Prototype
+        Developed a chatbot prototype using the Naïve Bayes classification algorithm, designed to respond to internal queries related to ongoing team projects and documentation.
+        Implemented the NLP model using Python (NLTK) and integrated it into a Flask-based web interface to facilitate real-time interaction with users.
+        Won a cash prize during Accenture’s Innovation Month, recognized for enhancing internal knowledge sharing and demonstrating practical applications of AI in workplace productivity.
+
 
 Skills:
 

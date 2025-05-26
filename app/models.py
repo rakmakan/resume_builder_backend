@@ -1,5 +1,6 @@
 from pydantic import BaseModel
 from typing import List, Optional, Dict
+from datetime import datetime
 
 class Skill(BaseModel):
     """Model for a single skill"""
@@ -120,3 +121,15 @@ class JobAnalysis(BaseModel):
     required_experience: str = ""  # Required years and type of experience
     required_skills: str = ""  # Required technical and soft skills
     job_description: str  # Complete original job description text
+
+class Job(BaseModel):
+    """Model for job listings"""
+    id: str  # LinkedIn job ID
+    title: str
+    company: str
+    location: Optional[str] = None
+    description: str
+    seniority_level: Optional[str] = None
+    application_url: Optional[str] = None
+    applied: bool = False
+    scraped_date: datetime

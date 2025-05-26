@@ -27,7 +27,8 @@ class AIResumeBuilder:
             'openai:gpt-4o-mini',
             output_type=JobAnalysis,
             system_prompt="""
-            You are an expert job description analyzer. Extract key information from job descriptions.
+            You are an expert job description analyzer. Extract and categorize key information with a focus on identifying essential requirements and keywords.
+            
             Your output MUST include ALL of these fields:
             - company_name: Name of the hiring company
             - about: Brief description of the company and role context
@@ -36,12 +37,40 @@ class AIResumeBuilder:
             - required_skills: Both technical and soft skills needed for the role
             - job_description: The complete original job description text
 
+            Key Analysis Rules:
+            1. Extract and categorize ALL technical skills mentioned:
+               - Programming languages (e.g., Python, Java)
+               - Frameworks & libraries (e.g., PyTorch, React)
+               - Tools & platforms (e.g., AWS, Docker)
+               - Domain knowledge (e.g., ML, NLP)
+               
+            2. Identify required experience levels:
+               - Years of experience for each skill/domain
+               - Leadership/management requirements
+               - Industry-specific experience
+               
+            3. Determine education requirements:
+               - Minimum degree level
+               - Preferred/alternative qualifications
+               - Required certifications
+               
+            4. Extract key responsibilities:
+               - Core technical tasks
+               - Project management duties
+               - Team collaboration aspects
+               
+            5. Identify priority skills:
+               - Must-have vs nice-to-have skills
+               - Core technologies vs optional ones
+               - Required vs preferred experience
+
             Important Rules:
             1. All fields are required - do not omit any field
-            2. Keep the text in about/requirements fields concise but comprehensive
-            3. Preserve all important details from the original description
-            4. Use the exact field names as shown above
-            5. For job_description, include the complete original text unchanged
+            2. Keep descriptions concise but comprehensive
+            3. Preserve ALL technical terms and metrics exactly as written
+            4. Include both explicit and implicit requirements
+            5. Maintain all specific tools, frameworks, and methodologies mentioned
+            6. Tag skills as [REQUIRED] or [PREFERRED] based on context
             """
         )
         
@@ -49,48 +78,66 @@ class AIResumeBuilder:
             'openai:gpt-4o-mini',
             output_type=ParsedBackground,
             system_prompt="""
-            You are an expert resume parser. Extract structured information from a user's background text.
-            Focus on organizing the information into clear categories:
+            You are an expert resume parser. Parse the input text into a strict format with these required fields:
 
-            1. Personal Information:
-               - Extract name and a professional headline
-               - Organize contact details into structured format:
-                 * Email (icon: fas fa-envelope)
-                 * Phone (icon: fas fa-phone)
-                 * LinkedIn (icon: fab fa-linkedin)
-                 * GitHub (icon: fab fa-github)
-                 * Portfolio/Website (icon: fas fa-globe)
-               - Each contact detail should have:
-                 * detail_name (e.g., "Email", "Phone")
-                 * detail_icon (use Font Awesome icons as shown above)
-                 * detail_info (the actual contact information)
-
-            2. Education History:
-               - Extract degree, institution, location, and dates
-               - Keep descriptions concise (max 100 characters)
-               - Split achievements into separate bullet points
-               - Focus on measurable outcomes and technical relevance
-
-            3. Work History:
-               - Extract job titles, companies, locations, and dates
-               - List key responsibilities as bullet points
-               - Maintain specific details and metrics from the text
-
-            4. Skills List:
-               - Create a comprehensive list of technical and soft skills
-               - Only include skills explicitly mentioned in the text
-
-            5. Project History:
-               - Extract project names, technologies used
-               - Keep descriptions focused and technical
-               - Maintain specific metrics and outcomes
+            {
+                "personal_info": {
+                    "name": "Full name",
+                    "headline": "Current role title",
+                    "contact_details": [
+                        {
+                            "detail_name": "Email/Phone/LinkedIn/GitHub/Website",
+                            "detail_icon": "Font Awesome icon (fas/fab)",
+                            "detail_info": "Actual contact information"
+                        }
+                    ]
+                },
+                "work_history": [
+                    {
+                        "title": "Job title",
+                        "company": "Company name",
+                        "date_range": "Date range",
+                        "location": "Location",
+                        "key_responsibilities": [
+                            "List of main responsibilities and achievements"
+                        ]
+                    }
+                ],
+                "education_history": [
+                    {
+                        "degree": "Degree name",
+                        "institution": "Institution name",
+                        "date_range": "Date range",
+                        "location": "Location",
+                        "description": "Brief description of achievements"
+                    }
+                ],
+                "skills_list": [
+                    "List of all skills mentioned"
+                ],
+                "project_history": [
+                    {
+                        "title": "Project name",
+                        "technologies": "Technologies used",
+                        "description": "Project description",
+                        "link": "Project link (if any)"
+                    }
+                ]
+            }
 
             Important Rules:
-            - Never add information not present in the input text
-            - Preserve all numerical metrics and achievements
-            - Keep language concise and specific
-            - Split long descriptions into bullet points
-            - For contact details, always include appropriate Font Awesome icons
+            1. ALL fields are REQUIRED - do not omit any section
+            2. Contact details must use Font Awesome icons:
+               - Email: fas fa-envelope
+               - Phone: fas fa-phone
+               - LinkedIn: fab fa-linkedin
+               - GitHub: fab fa-github
+               - Website: fas fa-globe
+            3. Extract ALL skills mentioned in work/projects
+            4. Keep original metrics and numbers
+            5. Include ALL projects mentioned
+            6. Use exact dates as provided
+            7. Keep descriptions clear and concise
             """
         )
         
@@ -100,11 +147,44 @@ class AIResumeBuilder:
             output_type=GeneratedSummary,
             system_prompt="""
             You are an expert resume writer focusing on professional summaries.
-            Create a compelling summary that:
-            1. Aligns with the job requirements
-            2. Highlights relevant experience and skills
-            3. Shows clear value proposition
-            4. Is concise and impactful (2-4 sentences)
+            Create a focused, achievement-oriented summary that:
+
+            1. Matches Job Requirements:
+               - Lead with experience most relevant to role
+               - Highlight exact skills from requirements
+               - Focus on required years of experience
+               - Emphasize domain expertise match
+
+            2. Emphasizes Key Achievements:
+               - Include top 2-3 relevant metrics
+               - Focus on business impact
+               - Highlight scale/scope of work
+               - Mention key technologies
+
+            3. Shows Leadership & Growth:
+               - Note team/project leadership
+               - Highlight cross-functional work
+               - Show career progression
+               - Emphasize key responsibilities
+
+            4. Demonstrates Technical Depth:
+               - Focus on complex challenges solved
+               - Mention advanced technical skills
+               - Note innovative solutions
+               - Highlight major projects
+
+            Format Rules:
+            1. Length: 2-4 impactful sentences
+            2. Structure: Experience → Skills → Achievements
+            3. Focus: Target role requirements
+            4. Style: Active voice, quantifiable results
+            5. Emphasis: Technical expertise and outcomes
+
+            Avoid:
+            - Generic statements
+            - Non-relevant experience
+            - Soft skills without context
+            - Excessive length
             """
         )
         
@@ -112,12 +192,79 @@ class AIResumeBuilder:
             'openai:gpt-4o-mini',
             output_type=GeneratedSkills,
             system_prompt="""
-            You are an expert in organizing and presenting professional skills.
-            Organize skills into clear categories with proficiency levels that:
-            1. Match skills required in the job description
-            2. Include proficiency levels (0-100) for technical skills
-            3. Group into logical categories (e.g., Programming Languages, Tools)
-            4. Prioritize most relevant skills first
+            You are an expert in organizing and matching professional skills.
+            Create a skills section that strictly follows this JSON structure and MUST include ALL categories:
+            {
+                "categories": [
+                    {
+                        "name": "Core Technical",
+                        "skills": [ list of technical skills ]
+                    },
+                    {
+                        "name": "Tools & Platforms",
+                        "skills": [ list of tools/platforms ]
+                    },
+                    {
+                        "name": "Domain Expertise",
+                        "skills": [ list of domain skills ]
+                    },
+                    {
+                        "name": "Methodologies",
+                        "skills": [ list of methodologies ]
+                    },
+                    {
+                        "name": "Soft Skills",
+                        "skills": [ list of soft skills ]
+                    }
+                ]
+            }
+
+            Required Categories (ALL must be included):
+            1. "Core Technical":
+               - Programming languages
+               - Frameworks
+               - Libraries
+               - Core technologies
+
+            2. "Tools & Platforms":
+               - Development tools
+               - Cloud platforms
+               - Databases
+               - Infrastructure
+               - Development environments
+
+            3. "Domain Expertise":
+               - Industry knowledge
+               - Business domains
+               - Specialized fields
+               - Technical domains
+
+            4. "Methodologies":
+               - Development methodologies
+               - Project management approaches
+               - Best practices
+               - Standards and processes
+
+            5. "Soft Skills":
+               - Leadership abilities
+               - Communication skills
+               - Problem-solving approaches
+               - Team collaboration
+
+            Skill Scoring Rules:
+            Score each skill 0-100 based on:
+            - Years of experience (10pts/year)
+            - Project complexity (up to 20pts)
+            - Leadership role (up to 10pts)
+            - Recent usage (up to 10pts)
+
+            Important Requirements:
+            1. ALL five categories must be included, even if some have fewer skills
+            2. Each skill must have a name and proficiency score
+            3. Include both exact requirement matches and related skills
+            4. Use precise technical terminology
+            5. Include skills from background even if not in requirements
+            6. Organize similar technologies together within categories
             """
         )
         
@@ -125,18 +272,57 @@ class AIResumeBuilder:
             'openai:gpt-4o-mini',
             output_type=GeneratedExperience,
             system_prompt="""
-            You are an expert in crafting professional experience sections.
-            For each position, create entries that:
-            1. Highlight achievements relevant to the target role
-            2. Use strong action verbs and metrics
-            3. Demonstrate growth and impact
-            4. Match the required experience in the job description
+            You are an expert in crafting targeted professional experience sections.
+            Create highly relevant experience entries that:
 
-            Important ordering rules:
-            1. Order experiences from most recent to oldest (reverse chronological order)
-            2. Assign display_order starting from 0 for the most recent position
-            3. Increment display_order by 1 for each older position
-            4. Ensure all positions have a unique display_order value
+            1. Experience Selection Strategy:
+               For each position, assess:
+               - Direct skill matches to requirements
+               - Domain/industry relevance
+               - Project complexity alignment
+               - Leadership level fit
+               - Technical depth match
+
+            2. Content Prioritization:
+               For each bullet point:
+               - Lead with most relevant achievements
+               - Focus on required technologies
+               - Highlight matching methodologies
+               - Emphasize scale/scope alignment
+               - Include key metrics and outcomes
+
+            3. Achievement Format Rules:
+               Structure: Action Verb → Technology → Impact → Metric
+               Example: "Architected Python microservices reducing latency by 40%"
+               
+               Focus on:
+               - Technical implementation details
+               - Scale of impact
+               - Team/project leadership
+               - Business outcomes
+               - Innovation/problem-solving
+
+            4. Chronological Ordering:
+               - Most recent first (display_order = 0)
+               - Increment display_order for older roles
+               - Maintain exact original order
+               - Keep all positions from input
+
+            5. Content Selection Criteria:
+               Include experiences that show:
+               - Required technical skills
+               - Similar project scope
+               - Relevant domain expertise
+               - Leadership capabilities
+               - Problem-solving approach
+
+            Important Guidelines:
+            1. Use exact technical terms
+            2. Keep each bullet 1-2 lines
+            3. Start with strong action verbs
+            4. Include specific metrics
+            5. Show progression/growth
+            6. Focus on achievements over duties
             """
         )
         
@@ -144,14 +330,53 @@ class AIResumeBuilder:
             'openai:gpt-4o-mini',
             output_type=GeneratedEducation,
             system_prompt="""
-            You are an expert in presenting educational qualifications concisely.
-            Important rules to follow:
-            1. ONLY use information that exists in the provided background - do not invent or add details
-            2. Keep descriptions short and focused (max 1-2 lines)
-            3. Extract keywords from job requirements and use them to highlight relevant aspects of existing education
-            4. Format achievements with metrics when available
-            5. Focus on technical coursework and achievements that match the job requirements
-            6. Do not add certifications or courses that aren't mentioned in the background
+            You are an expert in presenting educational qualifications strategically.
+            Create targeted education entries that maximize keyword relevance.
+
+            Structure Requirements:
+            1. Each education entry MUST include:
+               - Degree name and field
+               - Institution name
+               - Location
+               - Date range
+               - Detailed description with AT LEAST two bullet points
+
+            2. Description Format:
+               First Point: Academic Achievement
+               - Focus on coursework and technical skills
+               - Include relevant technologies and tools
+               - Mention specialized training
+               - Add quantifiable metrics
+               Example: "Specialized in ML/AI with advanced coursework in Neural Networks, NLP, and Computer Vision; achieved 4.0 GPA in core technical subjects and published 2 research papers"
+
+               Second Point: Projects and Leadership
+               - Highlight technical projects
+               - Show leadership roles
+               - Mention industry collaboration
+               - Include research work
+               Example: "Led a 5-person team developing a deep learning model for medical imaging, achieving 95% accuracy; served as Teaching Assistant for Advanced ML course, mentoring 50+ students"
+
+            3. Content Requirements:
+               - Include ALL relevant technical keywords
+               - Highlight skills not mentioned in experience
+               - Show theoretical knowledge depth
+               - Demonstrate practical application
+               - Include quantifiable achievements
+
+            4. Keyword Integration:
+               - Add relevant technical terms
+               - Include methodologies studied
+               - Mention tools and frameworks
+               - List specialized training
+               - Note certifications and awards
+
+            Important Guidelines:
+            1. Each description MUST have at least 2 detailed points
+            2. Focus on technical and quantifiable achievements
+            3. Include keywords missing from other sections
+            4. Show both theoretical knowledge and practical application
+            5. Highlight research and projects relevant to the job
+            6. Include leadership and teaching experience if any
             """
         )
         
@@ -159,13 +384,61 @@ class AIResumeBuilder:
             'openai:gpt-4o-mini',
             output_type=GeneratedProjects,
             system_prompt="""
-            You are an expert in showcasing professional projects. Follow these rules strictly:
-            1. Description must be 100 characters or less
-            2. Focus ONLY on projects using technologies from job requirements
-            3. Format: "[Action] [Tech/Tool] to [Result] with [Metric]"
-            4. Do not invent or add details not in original description
-            5. Prioritize projects most relevant to job requirements
-            6. Keep technical terms and metrics from original description
+            You are an expert in showcasing technical projects strategically.
+            Create detailed project descriptions that highlight technical depth and impact.
+
+            Structure Requirements:
+            1. Each project MUST include:
+               - Project title
+               - Technologies used
+               - Project link (if available)
+               - TWO detailed description points
+
+            2. First Description Point - Technical Implementation:
+               Format: "Developed/Built/Implemented [specific technical solution] using [technologies] for [purpose]"
+               Example: "Developed a distributed machine learning pipeline using PyTorch and Ray for processing 1M+ documents daily"
+               Focus on:
+               - Architecture decisions
+               - Technical challenges solved
+               - Implementation details
+               - Scale and complexity
+
+            3. Second Description Point - Impact and Innovation:
+               Format: "Achieved [specific outcome] resulting in [business impact] through [technical approach]"
+               Example: "Achieved 95% accuracy in document classification by implementing custom BERT model with active learning"
+               Include:
+               - Performance improvements
+               - Business impact
+               - Innovation aspects
+               - Metrics and scale
+
+            4. Technology Integration:
+               For each project, include:
+               - Core technologies
+               - Frameworks and libraries
+               - Infrastructure/platforms
+               - Development tools
+               - Methodologies used
+
+            5. Project Selection Priority:
+               Order projects by:
+               - Relevance to job requirements
+               - Technical complexity
+               - Business impact
+               - Recent completion
+               - Innovation level
+
+            Critical Requirements:
+            1. MUST have TWO detailed points per project
+            2. Include specific technical details
+            3. Show end-to-end implementation
+            4. Include quantifiable metrics
+            5. Demonstrate problem-solving approach
+            6. Highlight unique technical challenges
+            7. Include keywords missing from other sections
+
+            Remember: Use projects to showcase skills and technologies 
+            not prominently featured in work experience
             """
         )
 
@@ -220,21 +493,38 @@ class AIResumeBuilder:
             print(f"Error analyzing job description: {str(e)}")
             raise
 
-    async def create_resume(self, company_id: int, my_background: str) -> int:
+    async def create_resume(self, company_id: int, my_background: str, job_id: str) -> int:
         """Create a targeted resume based on job requirements."""
         # Get company information
         company_data = self.company_repo.get_company(company_id)
         if not company_data:
             raise ValueError("Company not found")
 
+        # Check if resume already exists for this job
+        existing_resume = self.resume_repo.get_resume_by_job_id(job_id)
+        if existing_resume:
+            print(f"Resume already exists for job {job_id}")
+            return existing_resume["id"]
+
+        # Get job application URL
+        from app.db.job_repository import JobRepository
+        job_repo = JobRepository(self.db_path)
+        application_url = await job_repo.get_application_url(job_id)
+
         # First, parse the background information
         parsed_background = await self.background_parser.run(my_background)
         background_info = parsed_background.output
 
+        # Create description with application URL
+        description = f"Targeted resume for position at {company_data['name']}"
+        if application_url:
+            description += f"\nApplication URL: {application_url}"
+
         # Create resume in database
         resume_id = self.resume_repo.create_resume(
             name=f"Resume for {company_data['name']}",
-            description=f"Targeted resume for position at {company_data['name']}"
+            job_id=job_id,
+            description=description
         )            # Add basic personal information
         # Create a basic contact string from primary contact methods (email and phone)
         primary_contacts = [

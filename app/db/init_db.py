@@ -17,11 +17,13 @@ def init_database(db_path: str):
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS resumes (
         id INTEGER PRIMARY KEY,
+        job_id TEXT,
         name TEXT NOT NULL,
         description TEXT,
         is_default INTEGER DEFAULT 0,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (job_id) REFERENCES jobs(id)
     )
     """)
 
@@ -50,6 +52,19 @@ def init_database(db_path: str):
         resume_id INTEGER,
         name TEXT NOT NULL,
         contact_info TEXT NOT NULL,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (resume_id) REFERENCES resumes(id) ON DELETE CASCADE
+    )
+    """)
+
+    # Create personal_info_details table
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS personal_info_details (
+        id INTEGER PRIMARY KEY,
+        resume_id INTEGER,
+        detail_name TEXT NOT NULL,
+        detail_icon TEXT NOT NULL,
+        detail_info TEXT NOT NULL,
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         FOREIGN KEY (resume_id) REFERENCES resumes(id) ON DELETE CASCADE
     )
@@ -170,12 +185,26 @@ def init_database(db_path: str):
     )
     """)
 
+    # Create jobs table
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS jobs (
+        id TEXT PRIMARY KEY,
+        title TEXT NOT NULL,
+        company TEXT NOT NULL,
+        location TEXT,
+        description TEXT NOT NULL,
+        seniority_level TEXT,
+        application_url TEXT,
+        applied INTEGER DEFAULT 0,
+        scraped_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    )
+    """)
+
     conn.commit()
     conn.close()
 
 if __name__ == "__main__":
-    db_dir = Path(__file__).parent.parent / "database"
-    db_dir.mkdir(exist_ok=True)
-    db_path = str(db_dir / "resume.sqlite")
-    init_database(db_path)
-    print(f"Database initialized at: {db_path}")
+    from app.config import DATABASE_PATH, DATABASE_DIR
+    DATABASE_DIR.mkdir(parents=True, exist_ok=True)
+    init_database(DATABASE_PATH)
+    print(f"Database initialized at: {DATABASE_PATH}")
