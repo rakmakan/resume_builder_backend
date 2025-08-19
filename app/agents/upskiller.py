@@ -8,7 +8,10 @@ from pydantic_ai.models.test import TestModel
 from app.models import GapAnalysis, UpskillPlan
 from app.mcp import fetch
 from app import get_logger
+import logfire
 
+logfire.configure(scrubbing=False)  
+logfire.instrument_pydantic_ai() 
 logger = get_logger(__name__)
 
 
@@ -19,7 +22,7 @@ class UpskillerInput(BaseModel):
 
 
 upskiller = Agent(
-    model=TestModel(call_tools=[]),
+    model="openai:gpt-4o-mini",
     toolsets=[fetch] if fetch else [],
     output_type=UpskillPlan,
     system_prompt=(

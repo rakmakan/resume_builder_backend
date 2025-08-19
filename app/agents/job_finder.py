@@ -10,6 +10,10 @@ from pydantic_ai.models.test import TestModel
 from app.models import JobPosting, CandidateProfile
 from app.mcp import fetch
 from app import get_logger
+import logfire
+
+logfire.configure(scrubbing=False)  
+logfire.instrument_pydantic_ai()
 
 logger = get_logger(__name__)
 
@@ -22,7 +26,7 @@ class JobFinderOutput(BaseModel):
 
 
 system_prompt = (
-    "You find relevant jobs from web pages fetched via the 'fetch_*' tools. "
+    "You find relevant jobs from linkedin, CIBC career website, Indeed, Sanofi fetched via the 'fetch_*' tools. Create queries and crawl to pages. Be elboarte in your search "
     "Return tightly structured postings. Prefer official job pages."
     if fetch
     else "Web access is disabled; infer likely job postings from the candidate profile."
@@ -34,7 +38,7 @@ else:  # pragma: no cover - offline mode
     logger.info("Job Finder agent running without Fetch MCP server")
 
 job_finder = Agent(
-    model=TestModel(call_tools=[]),
+    model="openai:gpt-4o-mini",
     toolsets=[fetch] if fetch else [],
     output_type=JobFinderOutput,
     system_prompt=system_prompt,

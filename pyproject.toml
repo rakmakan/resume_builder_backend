@@ -13,6 +13,7 @@ python = ">=3.11,<4.0"
 "httpx" = "*"
 "fastapi" = "*"
 "logfire" = "*"
+openai = "^1.100.1"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "*"

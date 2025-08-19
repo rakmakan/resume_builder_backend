@@ -9,6 +9,10 @@ from pydantic_ai.models.test import TestModel
 
 from app.models import CandidateProfile, JobPosting, GapAnalysis
 from app import get_logger
+import logfire
+
+logfire.configure(scrubbing=False)  
+logfire.instrument_pydantic_ai()
 
 logger = get_logger(__name__)
 
@@ -21,7 +25,7 @@ class EvaluatorInput(BaseModel):
 
 
 evaluator = Agent(
-    model=TestModel(),
+    model="openai:gpt-4o-mini",
     output_type=GapAnalysis,
     system_prompt=(
         "Compare the candidate's skills with requirements across job postings "
