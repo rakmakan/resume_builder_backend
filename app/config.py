@@ -1,7 +1,7 @@
 """Configuration settings for the resume builder application."""
 from pathlib import Path
+from .config_loader import ConfigLoader
 
-# Database configuration
-# Set the external database path
-DATABASE_PATH = "/Users/rakshitmakan/Documents/resume_builder/database/resume.sqlite"
+# Database configuration using centralized config
+DATABASE_PATH = ConfigLoader.get_database_path()
 DATABASE_DIR = Path(DATABASE_PATH).parent

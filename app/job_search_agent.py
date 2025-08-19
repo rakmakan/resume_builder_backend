@@ -8,6 +8,10 @@ from .models import Job
 from .db.job_repository import JobRepository
 from openai import AsyncOpenAI
 from .config import DATABASE_PATH
+import sys
+from pathlib import Path
+sys.path.append(str(Path(__file__).parent.parent))
+from linkedin_job_description_scrapper import LinkedInJobScraper
 
 class JobSearchAgent:
     def __init__(self, api_key: str = None):
@@ -138,6 +142,38 @@ class JobSearchAgent:
                 print(f"Job already exists: {job.title} at {job.company}")
 
         return saved_count
+
+    async def search_jobs(self, queries: List[Dict], location: str, experience_level: str, max_results: int) -> List[Dict]:
+        """Execute job search using generated queries and LinkedIn scraper"""
+        scraper = LinkedInJobScraper()
+        all_jobs = []
+        seen_job_ids = set()
+        
+        for query in queries:
+            try:
+                # Extract keywords from query
+                keywords = ' '.join(query.get('keywords', [])) if isinstance(query.get('keywords'), list) else query.get('keywords', '')
+                
+                # Use the scraper to search for jobs
+                jobs = scraper.search_jobs(
+                    keywords=keywords,
+                    location=location,
+                    experience_level=[experience_level],
+                    max_results=max_results // len(queries)  # Distribute results across queries
+                )
+                
+                # Filter duplicates
+                for job in jobs:
+                    job_id = job.get('id') or job.get('title', '') + job.get('company', '')
+                    if job_id not in seen_job_ids:
+                        seen_job_ids.add(job_id)
+                        all_jobs.append(job)
+                
+            except Exception as e:
+                print(f"Error executing query {query}: {e}")
+                continue
+        
+        return all_jobs[:max_results]  # Limit to max_results
 
     def save_results_to_json(self, jobs: List[Dict], output_dir: str = "input") -> Optional[str]:
         """Save results to JSON file"""
