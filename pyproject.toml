@@ -1,22 +1,21 @@
 [tool.poetry]
-name = "resume-builder-backend"
+name = "career-advisor"
 version = "0.1.0"
-description = ""
-authors = ["Rakshit Makan <rakshitmakan.dev@gmail.com>"]
+description = "Career Advisor Agent System"
+authors = ["AI <ai@example.com>"]
 readme = "README.md"
+packages = [{ include = "app" }]
 
 [tool.poetry.dependencies]
-python = "^3.11"
-sqlalchemy = "^2.0.41"
-python-dotenv = "^1.1.0"
-pydantic = "^2.11.5"
-pydantic-ai = "^0.2.7"
-openai = "^1.82.0"
-selenium = "^4.33.0"
-webdriver-manager = "^4.0.2"
-pandas = "^2.2.3"
-beautifulsoup4 = "^4.13.4"
+python = ">=3.11,<4.0"
+"pydantic-ai-slim" = { version = "*", extras = ["mcp"] }
+"pydantic-graph" = "*"
+"httpx" = "*"
+"fastapi" = "*"
+"logfire" = "*"
 
+[tool.poetry.group.dev.dependencies]
+pytest = "*"
 
 [build-system]
 requires = ["poetry-core"]
