@@ -1,0 +1,104 @@
+# Career Advisor Agent System
+
+A lightweight multi-agent prototype that analyzes a candidate's résumé against the current job market and recommends upskilling
+resources. Agents are built with **PydanticAI** and orchestrated using **pydantic-graph**. A minimal **CLI** and optional **FastAPI** server are provided.
+
+## Features
+- **Job Finder** – queries banking-company career sites plus LinkedIn and Indeed via an MCP Fetch server and extracts required skills.
+- **Evaluator** – summarizes each job posting, extracts required skills, and compares them to the candidate profile to produce a gap analysis.
+- **Upskiller** – suggests courses, projects, and certifications to close skill gaps.
+- **CLI interface** – run the full pipeline from the terminal.
+- **Logfire integration** – captures prompts, tool calls, and timings for observability.
+
+### Job search strategy
+The Job Finder constructs search URLs targeting major banking-company career sites as well as
+LinkedIn and Indeed listings. When the MCP Fetch server is enabled, these pages are retrieved
+and parsed to build structured `JobPosting` records for downstream analysis.
+
+## Installation
+This repository uses [Poetry](https://python-poetry.org/) for dependency management.
+
+```bash
+poetry install
+poetry shell  # optional: activate virtualenv
+```
+
+If Poetry is unavailable you can install the runtime dependencies directly:
+
+```bash
+pip install "pydantic-ai-slim[mcp]" pydantic-graph httpx fastapi logfire
+```
+
+## Running the CLI
+Create a simple résumé file where each line is a skill. Then execute:
+
+```bash
+python -m app.cli path/to/resume.txt
+```
+
+The CLI loads the résumé, runs the graph, and prints a dictionary containing job postings, gap analysis, and an upskill plan.
+
+## FastAPI Server (Optional)
+An HTTP wrapper is provided in `app/server.py`:
+
+```bash
+  uvicorn app.server:app --reload
+```
+
+POST a `CandidateProfile` JSON to `/analyze` to run the pipeline.
+
+## Observability with Logfire
+If [Logfire](https://logfire.pydantic.dev/) is installed and the `LOGFIRE_TOKEN`
+environment variable is set, the application configures Logfire with the service
+name `career-advisor` and instruments both PydanticAI and HTTPX. Standard Python
+logging continues to emit to stdout, while traces and logs are forwarded to your
+Logfire project.
+
+## Replacing the Test Model with a Real Model
+The agents use `TestModel` from PydanticAI so the system works offline. To use a real LLM:
+
+1. Install the provider SDK (e.g. `openai`).
+2. Replace the `model=TestModel()` arguments in `app/agents/*.py` with the provider string, e.g.:
+   ```python
+   job_finder = Agent(
+       model="openai:gpt-4o",
+       toolsets=[fetch],
+       output_type=JobFinderOutput,
+       ...
+   )
+   ```
+3. Provide the necessary API key via environment variable (`OPENAI_API_KEY` for OpenAI).
+4. Ensure the MCP Fetch server is running and accessible (see below).
+
+## MCP Fetch Server
+Agents can connect to an MCP server that exposes a `fetch` tool for retrieving web pages.
+
+- Python stdio implementation:
+  ```bash
+  pip install mcp-server-fetch
+  python -m mcp_server_fetch stdio
+  ```
+- or point an HTTP/SSE endpoint in code if you prefer network access.
+
+The default configuration disables the fetch tool unless the environment variable
+`ENABLE_FETCH` is set. When enabled, the local stdio variant is used.
+
+## Testing
+Run the unit tests and validate the project configuration:
+
+```bash
+poetry check
+pytest -q
+```
+
+## Environment
+Copy `.env.example` to `.env` and populate secrets as needed:
+
+```env
+OPENAI_API_KEY=your-openai-key
+ENABLE_FETCH=1  # optional: use local MCP Fetch server
+LOGFIRE_TOKEN=your-logfire-token  # optional: send traces to Logfire
+```
+
+## Limitations
+The repository focuses on scaffolding and uses stub implementations. Fetching real job listings and course data requires a running MCP Fetch server and an LLM provider.
