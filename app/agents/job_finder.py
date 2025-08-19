@@ -19,8 +19,8 @@ class JobFinderOutput(BaseModel):
 
 
 job_finder = Agent(
-    model=TestModel(),
-    toolsets=[fetch],
+    model=TestModel(call_tools=[]),
+    toolsets=[fetch] if fetch else [],
     output_type=JobFinderOutput,
     system_prompt=(
         "You find relevant jobs from web pages fetched via the 'fetch_*' tools. "

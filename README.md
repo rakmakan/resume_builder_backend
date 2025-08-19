@@ -60,16 +60,17 @@ To use a real LLM:
 4. Ensure the MCP Fetch server is running and accessible (see below).
 
 ## MCP Fetch Server
-Agents rely on an MCP server that exposes a `fetch` tool for retrieving web pages.
+Agents can connect to an MCP server that exposes a `fetch` tool for retrieving web pages.
 
 - Python stdio implementation:
   ```bash
   pip install mcp-server-fetch
   python -m mcp_server_fetch stdio
   ```
-- or point `MCP_FETCH_URL` in `.env` to an HTTP/SSE endpoint.
+- or point an HTTP/SSE endpoint in code if you prefer network access.
 
-The default configuration in `app/mcp.py` uses the local stdio variant.
+The default configuration disables the fetch tool unless the environment variable
+`ENABLE_FETCH` is set. When enabled, the local stdio variant is used.
 
 ## Testing
 Run the unit tests and validate the project configuration:
@@ -84,7 +85,7 @@ Copy `.env.example` to `.env` and populate secrets as needed:
 
 ```env
 OPENAI_API_KEY=your-openai-key
-MCP_FETCH_URL=http://localhost:3001/sse
+ENABLE_FETCH=1  # optional: use local MCP Fetch server
 ```
 
 ## Limitations

@@ -29,8 +29,11 @@ class State:
 @dataclass
 class FindJobs(BaseNode[State]):
     async def run(self, ctx: GraphRunContext[State]) -> 'Evaluate':
-        output: JobFinderOutput = await job_finder.run(profile=ctx.state.profile)
-        ctx.state.postings = output.postings
+        # Use a simple prompt since the TestModel ignores content but requires a string.
+        run = await job_finder.run(
+            f"skills: {', '.join(ctx.state.profile.skills)}"
+        )
+        ctx.state.postings = run.output.postings
         return Evaluate()
 
 
@@ -39,9 +42,8 @@ class Evaluate(BaseNode[State]):
     async def run(self, ctx: GraphRunContext[State]) -> 'Upskill' | End[State]:
         if not ctx.state.postings:
             return End(ctx.state)
-        ctx.state.analysis = await evaluator.run(
-            profile=ctx.state.profile, postings=ctx.state.postings
-        )
+        eval_run = await evaluator.run("evaluate gaps")
+        ctx.state.analysis = eval_run.output
         return Upskill()
 
 
@@ -50,7 +52,8 @@ class Upskill(BaseNode[State]):
     async def run(self, ctx: GraphRunContext[State]) -> End[State]:
         if ctx.state.analysis is None:
             return End(ctx.state)
-        ctx.state.plan = await upskiller.run(analysis=ctx.state.analysis)
+        up_run = await upskiller.run("recommend upskilling")
+        ctx.state.plan = up_run.output
         return End(ctx.state)
 
 

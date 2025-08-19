@@ -16,8 +16,8 @@ class UpskillerInput(BaseModel):
 
 
 upskiller = Agent(
-    model=TestModel(),
-    toolsets=[fetch],
+    model=TestModel(call_tools=[]),
+    toolsets=[fetch] if fetch else [],
     output_type=UpskillPlan,
     system_prompt=(
         "Recommend courses, projects, and certifications based on the gap "

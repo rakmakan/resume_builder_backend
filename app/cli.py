@@ -7,14 +7,14 @@ from dataclasses import asdict
 from pathlib import Path
 
 from app.deps import load_resume
-from app.graph import State, graph
+from app.graph import State, graph, FindJobs
 
 
 async def run_pipeline(resume_path: Path) -> State:
     """Execute the full agent graph for the given résumé file."""
     profile = load_resume(resume_path)
-    run = await graph.run(State(profile=profile))
-    return run.state
+    result = await graph.run(FindJobs(), state=State(profile=profile))
+    return result.state
 
 
 def main() -> None:
