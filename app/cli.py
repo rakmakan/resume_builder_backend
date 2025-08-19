@@ -5,15 +5,20 @@ import argparse
 import asyncio
 from dataclasses import asdict
 from pathlib import Path
+import logging
 
 from app.deps import load_resume
 from app.graph import State, graph, FindJobs
 
+logger = logging.getLogger(__name__)
+
 
 async def run_pipeline(resume_path: Path) -> State:
     """Execute the full agent graph for the given résumé file."""
+    logger.info("Loading résumé from %s", resume_path)
     profile = load_resume(resume_path)
     result = await graph.run(FindJobs(), state=State(profile=profile))
+    logger.info("Pipeline execution finished")
     return result.state
 
 

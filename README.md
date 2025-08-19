@@ -1,14 +1,14 @@
 # Career Advisor Agent System
 
-A lightweight multi-agent prototype that analyzes a candidate's résumé against the current job market and recommends upskilling resources.  
-Agents are built with **PydanticAI** and orchestrated using **pydantic-graph**.  
-A minimal **CLI** and optional **FastAPI** server are provided.
+A lightweight multi-agent prototype that analyzes a candidate's résumé against the current job market and recommends upskilling
+resources. Agents are built with **PydanticAI** and orchestrated using **pydantic-graph**. A minimal **CLI** and optional **FastAPI** server are provided.
 
 ## Features
 - **Job Finder** – fetches job listings via an MCP Fetch server and extracts required skills.
 - **Evaluator** – compares market skills to the candidate profile and produces a gap analysis.
 - **Upskiller** – suggests courses, projects, and certifications to close skill gaps.
 - **CLI interface** – run the full pipeline from the terminal.
+- **Logfire integration** – captures prompts, tool calls, and timings for observability.
 
 ## Installation
 This repository uses [Poetry](https://python-poetry.org/) for dependency management.
@@ -21,7 +21,7 @@ poetry shell  # optional: activate virtualenv
 If Poetry is unavailable you can install the runtime dependencies directly:
 
 ```bash
-pip install "pydantic-ai-slim[mcp]" pydantic-graph httpx fastapi
+pip install "pydantic-ai-slim[mcp]" pydantic-graph httpx fastapi logfire
 ```
 
 ## Running the CLI
@@ -43,8 +43,7 @@ uvicorn app.server:app --reload
 POST a `CandidateProfile` JSON to `/analyze` to run the pipeline.
 
 ## Replacing the Test Model with a Real Model
-The agents use `TestModel` from PydanticAI so the system works offline.  
-To use a real LLM:
+The agents use `TestModel` from PydanticAI so the system works offline. To use a real LLM:
 
 1. Install the provider SDK (e.g. `openai`).
 2. Replace the `model=TestModel()` arguments in `app/agents/*.py` with the provider string, e.g.:
@@ -86,8 +85,8 @@ Copy `.env.example` to `.env` and populate secrets as needed:
 ```env
 OPENAI_API_KEY=your-openai-key
 ENABLE_FETCH=1  # optional: use local MCP Fetch server
+LOGFIRE_TOKEN=your-logfire-token  # optional: send traces to Logfire
 ```
 
 ## Limitations
-The repository focuses on scaffolding and uses stub implementations.  
-Fetching real job listings and course data requires a running MCP Fetch server and an LLM provider.
+The repository focuses on scaffolding and uses stub implementations. Fetching real job listings and course data requires a running MCP Fetch server and an LLM provider.

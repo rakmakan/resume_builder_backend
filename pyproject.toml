@@ -12,6 +12,7 @@ python = ">=3.11,<4.0"
 "pydantic-graph" = "*"
 "httpx" = "*"
 "fastapi" = "*"
+"logfire" = "*"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "*"
