@@ -1,19 +1,21 @@
-[project]
+[tool.poetry]
 name = "career-advisor"
 version = "0.1.0"
 description = "Career Advisor Agent System"
-authors = [{name = "AI", email = "ai@example.com"}]
-requires-python = ">=3.11"
-dependencies = [
-    "pydantic-ai-slim[mcp]",
-    "pydantic-graph",
-    "httpx",
-    "fastapi",
-]
+authors = ["AI <ai@example.com>"]
+readme = "README.md"
+packages = [{ include = "app" }]
 
-[project.optional-dependencies]
-dev = ["pytest"]
+[tool.poetry.dependencies]
+python = ">=3.11,<4.0"
+"pydantic-ai-slim" = { version = "*", extras = ["mcp"] }
+"pydantic-graph" = "*"
+"httpx" = "*"
+"fastapi" = "*"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "*"
 
 [build-system]
-requires = ["setuptools", "wheel"]
-build-backend = "setuptools.build_meta"
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
