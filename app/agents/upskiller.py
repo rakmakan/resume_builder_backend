@@ -7,6 +7,9 @@ from pydantic_ai.models.test import TestModel
 
 from app.models import GapAnalysis, UpskillPlan
 from app.mcp import fetch
+from app import get_logger
+
+logger = get_logger(__name__)
 
 
 class UpskillerInput(BaseModel):
@@ -25,3 +28,8 @@ upskiller = Agent(
         "necessary."
     ),
 )
+
+if fetch:
+    logger.info("Upskiller agent configured with Fetch MCP server")
+else:  # pragma: no cover - offline mode
+    logger.info("Upskiller agent running without Fetch MCP server")

@@ -9,6 +9,9 @@ from pydantic_ai.models.test import TestModel
 
 from app.models import JobPosting, CandidateProfile
 from app.mcp import fetch
+from app import get_logger
+
+logger = get_logger(__name__)
 
 
 class JobFinderOutput(BaseModel):
@@ -25,6 +28,11 @@ system_prompt = (
     else "Web access is disabled; infer likely job postings from the candidate profile."
 )
 
+if fetch:
+    logger.info("Job Finder agent configured with Fetch MCP server")
+else:  # pragma: no cover - offline mode
+    logger.info("Job Finder agent running without Fetch MCP server")
+
 job_finder = Agent(
     model=TestModel(call_tools=[]),
     toolsets=[fetch] if fetch else [],
@@ -40,4 +48,5 @@ if fetch:
         """Fetch a URL via the MCP fetch server and return markdown content."""
         # Delegate the actual HTTP retrieval to the MCP fetch toolset attached to
         # the agent. The tool name is prefixed with ``fetch`` in ``mcp.py``.
+        logger.info("Fetching URL via MCP: %s", url)
         return await ctx.tool("fetch.fetch", url=url)

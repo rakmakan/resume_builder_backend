@@ -8,6 +8,9 @@ from pydantic_ai import Agent
 from pydantic_ai.models.test import TestModel
 
 from app.models import CandidateProfile, JobPosting, GapAnalysis
+from app import get_logger
+
+logger = get_logger(__name__)
 
 
 class EvaluatorInput(BaseModel):
@@ -25,3 +28,5 @@ evaluator = Agent(
         "and return a structured gap analysis."
     ),
 )
+
+logger.info("Evaluator agent initialized")
