@@ -5,12 +5,11 @@ import argparse
 import asyncio
 from dataclasses import asdict
 from pathlib import Path
-import logging
-
+from app import get_logger
 from app.deps import load_resume
 from app.graph import State, graph, FindJobs
 
-logger = logging.getLogger(__name__)
+logger = get_logger(__name__)
 
 
 async def run_pipeline(resume_path: Path) -> State:

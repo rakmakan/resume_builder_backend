@@ -2,10 +2,10 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-import logging
 
 from pydantic_graph import BaseNode, End, Graph, GraphRunContext
 
+from app import get_logger
 from app.models import (
     CandidateProfile,
     GapAnalysis,
@@ -17,7 +17,7 @@ from app.agents.evaluator import evaluator
 from app.agents.upskiller import upskiller
 
 
-logger = logging.getLogger(__name__)
+logger = get_logger(__name__)
 
 
 @dataclass

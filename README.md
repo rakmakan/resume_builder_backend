@@ -37,10 +37,17 @@ The CLI loads the résumé, runs the graph, and prints a dictionary containing j
 An HTTP wrapper is provided in `app/server.py`:
 
 ```bash
-uvicorn app.server:app --reload
+  uvicorn app.server:app --reload
 ```
 
 POST a `CandidateProfile` JSON to `/analyze` to run the pipeline.
+
+## Observability with Logfire
+If [Logfire](https://logfire.pydantic.dev/) is installed and the `LOGFIRE_TOKEN`
+environment variable is set, the application configures Logfire with the service
+name `career-advisor` and instruments both PydanticAI and HTTPX. Standard Python
+logging continues to emit to stdout, while traces and logs are forwarded to your
+Logfire project.
 
 ## Replacing the Test Model with a Real Model
 The agents use `TestModel` from PydanticAI so the system works offline. To use a real LLM:

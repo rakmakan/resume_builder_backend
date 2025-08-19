@@ -1,14 +1,13 @@
 """FastAPI server exposing the Career Advisor pipeline."""
 from __future__ import annotations
 
-import logging
 from fastapi import FastAPI
 
 from app.graph import State, graph
 from app.models import CandidateProfile
-from app import logfire
+from app import logfire, get_logger
 
-logger = logging.getLogger(__name__)
+logger = get_logger(__name__)
 
 app = FastAPI(title="Career Advisor Agent System")
 
